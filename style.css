@@ -5,12 +5,12 @@ body {
     padding: 0;
     padding-bottom: 100px;
     line-height: 1.6;
-    background-color: #f4f4f4;
-    color: #333;
+    background-color: #202123;
+    color:white;
   }
   
   header {
-    background: #333;
+    background: #313232;
     color: #fff;
     padding: 1rem 0;
     text-align: center;
@@ -39,11 +39,11 @@ body {
   .social-links a {
     margin: 0 10px;
     text-decoration: none;
-    color: #0077b5;
+    color: #87d2fa;
   }
   
   footer {
-    background: #333;
+    background: #313232;
     color: #fff;
     text-align: center;
     padding: 10px 0;
