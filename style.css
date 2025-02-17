@@ -39,10 +39,9 @@ body {
   projects {
     padding: 20px;
     text-align: left;
-  }S
+  }
   
   .social-links a {
-    margin: 0 10px;
     text-decoration: none;
     color: #36b3fb;
   }
