@@ -42,6 +42,7 @@ body {
   }
   
   .social-links a {
+    margin: 10px;
     text-decoration: none;
     color: #36b3fb;
   }
