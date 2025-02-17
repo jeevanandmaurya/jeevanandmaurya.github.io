@@ -25,7 +25,8 @@ body {
     display: inline;
     margin: 0 10px;
   }
-  
+
+
   nav ul li a {
     color: #fff;
     text-decoration: none;
@@ -33,13 +34,18 @@ body {
   
   main {
     padding: 20px;
-    text-align: center;
+    text-align: left;
   }
   
   .social-links a {
     margin: 0 10px;
     text-decoration: none;
-    color: #87d2fa;
+    color: #36b3fb;
+  }
+  .projects-links a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #00a2ff;
   }
   
   footer {
