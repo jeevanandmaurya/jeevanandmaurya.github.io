@@ -34,8 +34,12 @@ body {
   
   main {
     padding: 20px;
-    text-align: left;
+    text-align: center;
   }
+  projects {
+    padding: 20px;
+    text-align: left;
+  }S
   
   .social-links a {
     margin: 0 10px;
