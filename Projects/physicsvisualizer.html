@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Physics Visualizer</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #121212;
+            color: #f0f0f0;
+
+            /* Top-left logo */
+            .mini-logo {
+                position: absolute;
+                top: 0.1rem;
+                left: 0.1rem;
+                width: 40px;
+                height: 40px;
+                z-index: 1;
+            }
+
+            header {
+                text-align: center;
+                padding: 4rem 1rem 2rem;
+                background: #1e1e1e;
+                position: relative;
+            }
+
+            .title-logo {
+                max-width: 300px;
+                margin-bottom: 1.5rem;
+            }
+
+            .buttons {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 1rem;
+                margin-top: 1rem;
+            }
+
+            .buttons a {
+                padding:6px;
+                text-decoration: none;
+                background: #0062d2;
+                color: #fff;
+                border-radius: 8px;
+                transition: background 0.3s;
+            }
+
+            .buttons a:hover {
+                background: #367bd2;
+            }
+
+            section {
+                padding: 2rem 1.5rem;
+                max-width: 900px;
+                margin: auto;
+            }
+
+            iframe {
+                width: 100%;
+                height: 400px;
+                border: none;
+                border-radius: 10px;
+            }
+
+            footer {
+                background: #1e1e1e;
+                text-align: center;
+                padding: 1rem;
+                font-size: 0.9rem;
+                color: #888;
+            }
+
+            a {
+                color: #4e9af1;
+            }
+    </style>
+</head>
+
+<body>
+
+    <!-- Top-left mini logo -->
+    <img src="Assets/icon-transparent.svg" alt="PV Icon" class="mini-logo" />
+
+    <header>
+        <!-- Full title logo centered -->
+        <img src="Assets/physicsvisualizer.svg" alt="Physics Visualizer" class="title-logo" />
+
+        <p>Explore and simulate physics in real-time 3D — right in your browser or app.</p>
+
+        <div class="buttons">
+            <a href="https://jeevanandmaurya.github.io/physicsvisualizer/" target="_blank">Try Website</a>
+            <a href="https://your-apk-link.com" target="_blank">Try Android App</a>
+        </div>
+    </header>
+
+    <section id="demo">
+        <h2>🎥 Demo</h2>
+        <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe>
+    </section>
+
+    <section id="tutorial">
+        <h2>📘 Tutorial</h2>
+        <p>Learn how to use Physics Visualizer step-by-step — from basics to building AI-powered scenes.</p>
+        <a href="https://your-tutorial-link.com" target="_blank">View Full Tutorial</a>
+    </section>
+
+    <footer>
+        <p>
+            <a href="https://github.com/jeevanandmaurya/physicsvisualizer" target="_blank">GitHub Repository</a> |
+            © 2025 Physics Visualizer
+        </p>
+    </footer>
+
+</body>
+
+</html>
