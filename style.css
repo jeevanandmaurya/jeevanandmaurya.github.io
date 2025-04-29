@@ -5,19 +5,20 @@
   font-family: monospace;
 }
 header {
-  border-bottom: 1px solid #687171;
-  background: #3d3d3d;
-  color: #ffffff;
-  margin: 5px;
+  border-bottom: 1px solid #0000004a;
+  background: #ffffff;
+  color: #000000;
+  margin: 20px;
+  border-radius: 5px;
   padding: 10px;
-  /* padding: 1rem 0; */
 }
 body {
   font-family: Arial, sans-serif;
-  /* margin: 10px; */
+  margin: auto;
+  text-align: center;
   line-height: 2;
-  background-color: #202123;
-  color: rgb(222, 219, 219);
+  background-color: #1c736d;
+  color: rgb(0, 0, 0);
 }
 
 nav ul {
@@ -38,30 +39,42 @@ nav ul li:first-child {
 
 nav ul li a {
   font-family: monospace;
-  color: black;
-  font-size: 32px;
+  color: rgb(0, 0, 0);
+  font-size: 24px;
   text-decoration: none;
 }
 
 nav ul li:first-child a {
-  color: white;
+  color: rgb(0, 0, 0);
 }
 
 main {
-  padding: 0px 10px;
+  padding: 10px;
   text-align: normal;
+  background-color: #5affd3;
+  margin: 0px 20px;
+  border-radius: 5px;
 }
 h1 {
   text-align: center;
-  background-color: #7e7e7e;
+  background-color: #ffffff;
   color: #000000;
-  border: 2px solid black;
+  width: 400px;
+  margin: auto;
+  border: 1px solid rgba(0, 0, 0, 0.101);
+  border-radius: 5px;
+}
+h2{
+  margin-left: 20px;
+  text-align: left;
 }
 h3 {
-  margin: 20px;
+  margin-left: 20px;
+  text-align: left;
 }
 p {
   margin: 20px;
+  font-size: large;
 }
 
 .social-links a {
@@ -83,12 +96,17 @@ p {
   margin: 10px 0px;
   display: flex;
   flex-direction: row;
-
+  border: 1px solid rgba(0, 0, 0, 0.117);
+  background-color: #8db3a931;
+  border-radius: 10px;
+}
+img{
+  background-color: #1a1a1a;
 }
 
 footer {
-  border-top: 15px solid #000000;
-  background: #e2e2e2;
+  background: #fafafa;
+  border-top: 1px solid #00000046;
   padding-top: 10px;
   text-align: center;
   position: fixed;
