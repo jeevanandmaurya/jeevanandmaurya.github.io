@@ -5,84 +5,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HomePage</title>
     <link rel="stylesheet" href="style.css" />
+    <style>
+      *{
+       font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      }
+    </style>
   </head>
   <body>
     <header>
-      <nav>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="projects.html">Projects</a></li>
+      <h1>HomePage</h1>
+      <nav style="display: flex; gap: 10px; border: 1px solid;">
+          <h4 style="margin: 10px;"><a href="index.html">HomePage</a></h4>
+          <h4 style="margin: 10px;"><a href="projects.html">Projects</a></h4>
+          <h4 style="margin: 10px;"><a href="about.html">About</a></h4>
         </ul>
       </nav>
     </header>
-    <main>
-      <section id="Introduction">
-        <h1>Welcome to My Page</h1>
-        <p>Hi, I'm Jeevanand Maurya. I'm a Student.</p>
-      </section>
+    <main style="display: flex;">
 
-      <section id="featured-projects">
-        <h2>Featured Projects</h2>
-        <div class="projects-lists featured">
+
+      <section id="left" style="width: 80vw;">
+        <section id="Introduction" style="border: 1px solid; margin-top: 10px; padding: 10px;">
+          <h1>Welcome to My Page</h1>
+          <p>Hi, I'm Jeevanand Maurya.</p>
+          <p>I'm a BTech Student At <a href="https://www.lkouniv.ac.in/"> Lucknow University</a> in CSE-AI.</p>
+          <p>Year : 2024-28</p>
+        </section>
+        <section id="Featured Projects" style="border: 1px solid; margin-top: 10px; padding: 10px;">
+          <h1>Featured Projects</h1>
           <ul>
-            <li>
-              <div class="list-container">
-                <div class="project-image">
-                  <img src="Projects/Assets/physicsvisualizer.svg" alt="Physics Visualizer">
-                </div>
-                <div class="project-info">
-                  <a href="Projects/physicsvisualizer.html">
-                    <h2>Physics Visualizer</h2>
-                  </a>
-                  <p>AI-powered physics visualization tool</p>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="list-container">
-                <div class="project-image">
-                  <img src="Projects/Assets/tictactoe.png" alt="tictactoe">
-                </div>
-                <div class="project-info">
-                  <a href="Projects/tictactoe-cli.html">
-                    <h2>TicTacToe-CLI</h2>
-                  </a>
-                  <p>Terminal-based classic game</p>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="list-container">
-                <div class="project-image">
-                  <img src="Projects/Assets/snakegame.png" alt="snakegame">
-                </div>
-                <div class="project-info">
-                  <a href="Projects/snakegame-cli.html">
-                    <h2>SnakeGame-CLI</h2>
-                  </a>
-                  <p>Snake game in terminal</p>
-                </div>
-              </div>
-            </li>
-            <li class="view-all-item">
-              <div class="list-container view-all-container">
-                <a href="projects.html">View All Projects →</a>
-              </div>
-            </li>
+            <li><a href="Projects/physicsvisualizer.html">PhysicsVisualizer</a></li>
           </ul>
-        </div>
-      </section>
-    </main>
-    
-    <footer>
-      <div class="social-links"> 
-        <a href="https://github.com/jeevanandmaurya" target="_blank"><img width="25px" src="Github.svg" alt="Github"></a>
-        <a href="https://linkedin.com/in/jeevanandmaurya" target="_blank"><img width="25px" src="Linkedin.svg" alt="LinkedIn"></a>
-        <a href="https://x.com/jeevanandmaurya" target="_blank"><img width="25px" src="X.svg" alt="X(Twitter)"></a>
-      </div>
-    </footer>
+        </section>
 
-    <script src="script.js"></script>
+      </section>
+       <section id="right" style="width: 20vw;" >
+
+         <section id="Socials" style="border: 1px solid; margin-top: 10px; padding: 10px; margin-left:10px; ">
+          <h1>Socials</h1>
+          <a href="https://www.x.com/jeevanandmaurya">Twitter</a>
+          <br>
+          <a href="https://www.linkedin.com/in/jeevanandmaurya/">LinkedIn</a>
+          <br>
+          <a href="https://www.youtube.com/@JeevanandMaurya">Youtube</a>
+          <br>
+          <h1>Coding Platforms</h1>
+          <a href="https://github.com/jeevanandmaurya">GitHub</a>
+          <br>
+          <a href="https://www.geeksforgeeks.org/user/jeevanandmaurya/">GeeksForGeeks</a>
+          <br>
+          <a href="https://leetcode.com/u/Jeevanand01/">LeetCode</a>
+        
+
+
+      </section>
+
+
+
+    </main>
   </body>
 </html>
