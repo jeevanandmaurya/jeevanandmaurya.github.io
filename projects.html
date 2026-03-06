@@ -1,101 +1,115 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Projects</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Jeevanand · φ</title>
+  <meta name="description" content="Projects by Jeevanand Maurya." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=LINE+Seed+JP&family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-  <header>
-    <h1>Projects</h1>
-    <nav>
-      <h4><a href="index.html">HomePage</a></h4>
-      <h4><a href="projects.html">Projects</a></h4>
-      <h4><a href="about.html">About</a></h4>
-    </nav>
-  </header>
-  <project>
-    <div class="project-card">
-      <h2>PhysicsVisualizer</h2>
-      <img src="Projects/Assets/physicsvisualizer.svg" alt="PhysicsVisualizer">
-      <p>A web app to visualize physics scenes in 3D in real-time. Built with React and Three.js.</p>
-      <div class="project-links">
-        <a href="https://physicsvisualizer.vercel.app/" class="btn btn-primary" target="_blank">Open</a>
-        <a href="Projects/physicsvisualizer.html" class="btn btn-outline">Detail</a>
-      </div>
-      <div class="project-tech">React, Three.js, Cannon.js, JXGraph</div>
-    </div>
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
 
-    <div class="project-card">
-      <h2>Snake AI</h2>
-      <img src="Projects/Assets/snakeai.png" alt="Snake AI">
-      <p>Snake game powered by Deep Q-Learning (DQN) using TensorFlow.js.</p>
-      <div class="project-links">
-        <a href="https://jeevanandmaurya.github.io/web-projects/Snake/index.html" class="btn btn-primary"
-          target="_blank">Open</a>
-        <a href="https://github.com/jeevanandmaurya/web-projects/tree/main/Snake" class="btn btn-outline"
-          target="_blank">GitHub</a>
-      </div>
-      <div class="project-tech">HTML5 Canvas, Javascript, TensorFlow.js (DQN)</div>
-    </div>
+<header>
+  <nav>
+    <a href="index.html" class="nav-link"><span class="sep">/</span> home</a>
+    <a href="projects.html" class="nav-link active"><span class="sep">/</span> projects</a>
+    <a href="about.html" class="nav-link"><span class="sep">/</span> about</a>
+    <span class="nav-spacer"></span>
+    <button id="theme-toggle" aria-label="Toggle theme">
+      <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+      <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+        <circle cx="12" cy="12" r="5"/>
+        <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+        <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+      </svg>
+    </button>
+  </nav>
+</header>
 
-    <div class="project-card">
-      <h2>TicTacToe - Web</h2>
-      <img src="Projects/Assets/tictactoesweb.png" alt="TicTacToe">
-      <p>A clean, responsive TicTacToe game with a focus on smooth UI/UX.</p>
-      <div class="project-links">
-        <a href="https://jeevanandmaurya.github.io/web-projects/Tic%20Tac%20Toe/index.html" class="btn btn-primary"
-          target="_blank">Open</a>
-        <a href="https://github.com/jeevanandmaurya/web-projects/tree/main/Tic%20Tac%20Toe" class="btn btn-outline"
-          target="_blank">GitHub</a>
-      </div>
-      <div class="project-tech">HTML, CSS, Javascript</div>
-    </div>
+<div class="projects-stats">
+  <div class="stat-item">
+    <span class="stat-value">06</span>
+    <span class="stat-label">Projects</span>
+  </div>
+</div>
 
-    <div class="project-card">
-      <h2>Calculator</h2>
-      <img src="Projects/Assets/calculator.png" alt="Calculator">
-      <p>A modern calculator app with a sleek, minimalist design.</p>
-      <div class="project-links">
-        <a href="https://jeevanandmaurya.github.io/web-projects/Calculator/index.html" class="btn btn-primary"
-          target="_blank">Open</a>
-        <a href="https://github.com/jeevanandmaurya/web-projects/tree/main/Calculator" class="btn btn-outline"
-          target="_blank">GitHub</a>
-      </div>
-      <div class="project-tech">HTML, CSS, Javascript</div>
+<div class="projects-grid">
+  <div class="project-card">
+    <div class="project-header">
+      <h2><a href="Projects/physicsvisualizer.html">Physics Visualizer</a></h2>
+      <span class="project-tech">React · Three.js · Rapier.js</span>
     </div>
-
-    <div class="project-card">
-      <h2>Notes</h2>
-      <img src="Projects/Assets/notes.png" alt="Notes">
-      <p>A simple note-taking application for quick thoughts and tasks.</p>
-      <div class="project-links">
-        <a href="https://jeevanandmaurya.github.io/web-projects/Notes/index.html" class="btn btn-primary"
-          target="_blank">Open</a>
-        <a href="https://github.com/jeevanandmaurya/web-projects/tree/main/Notes" class="btn btn-outline"
-          target="_blank">GitHub</a>
-      </div>
-      <div class="project-tech">HTML, CSS, Javascript</div>
+    <p>A web app to visualize physics scenes in 3D in real-time. Built with React and Three.js.</p>
+    <div class="project-links">
+      <a href="https://physicsvisualizer.vercel.app/" class="btn btn-primary" target="_blank">Open</a>
+      <a href="Projects/physicsvisualizer.html" class="btn">Detail</a>
     </div>
-
-    <div class="project-card">
-      <h2>CLI Games</h2>
-      <div class="project-images">
-        <img src="Projects/Assets/snakegame.png" alt="Snake CLI">
-        <img src="Projects/Assets/tictactoe.png" alt="TicTacToe CLI">
-      </div>
-      <p>Classic games written in C, playable directly in the Windows Terminal.</p>
-      <div class="project-links">
-        <a href="Projects/cli-games.html" class="btn btn-outline">Detail</a>
-      </div>
-      <div class="project-tech">C Language, Windows API</div>
+  </div>
+  <div class="project-card">
+    <div class="project-header">
+      <h2><a href="https://jeevanandmaurya.github.io/web-projects/Snake/index.html" target="_blank">Snake AI</a></h2>
+      <span class="project-tech">JS · TensorFlow.js</span>
     </div>
-  </project>
+    <p>Snake game powered by Deep Q-Learning (DQN) using TensorFlow.js.</p>
+    <div class="project-links">
+      <a href="https://jeevanandmaurya.github.io/web-projects/Snake/index.html" class="btn btn-primary" target="_blank">Open</a>
+      <a href="https://github.com/jeevanandmaurya/web-projects/tree/main/Snake" class="btn" target="_blank">GitHub</a>
+    </div>
+  </div>
+  <div class="project-card">
+    <div class="project-header">
+      <h2><a href="https://jeevanandmaurya.github.io/web-projects/Tic%20Tac%20Toe/index.html" target="_blank">TicTacToe Web</a></h2>
+      <span class="project-tech">HTML · CSS · JS</span>
+    </div>
+    <p>A clean, responsive TicTacToe game with a focus on smooth UI/UX.</p>
+    <div class="project-links">
+      <a href="https://jeevanandmaurya.github.io/web-projects/Tic%20Tac%20Toe/index.html" class="btn btn-primary" target="_blank">Open</a>
+      <a href="https://github.com/jeevanandmaurya/web-projects/tree/main/Tic%20Tac%20Toe" class="btn" target="_blank">GitHub</a>
+    </div>
+  </div>
+  <div class="project-card">
+    <div class="project-header">
+      <h2><a href="https://jeevanandmaurya.github.io/web-projects/Calculator/index.html" target="_blank">Calculator</a></h2>
+      <span class="project-tech">HTML · CSS · JS</span>
+    </div>
+    <p>A modern calculator app with a sleek, minimalist design.</p>
+    <div class="project-links">
+      <a href="https://jeevanandmaurya.github.io/web-projects/Calculator/index.html" class="btn btn-primary" target="_blank">Open</a>
+      <a href="https://github.com/jeevanandmaurya/web-projects/tree/main/Calculator" class="btn" target="_blank">GitHub</a>
+    </div>
+  </div>
+  <div class="project-card">
+    <div class="project-header">
+      <h2><a href="https://jeevanandmaurya.github.io/web-projects/Notes/index.html" target="_blank">Notes</a></h2>
+      <span class="project-tech">HTML · CSS · JS</span>
+    </div>
+    <p>A simple note-taking application for quick thoughts and tasks.</p>
+    <div class="project-links">
+      <a href="https://jeevanandmaurya.github.io/web-projects/Notes/index.html" class="btn btn-primary" target="_blank">Open</a>
+      <a href="https://github.com/jeevanandmaurya/web-projects/tree/main/Notes" class="btn" target="_blank">GitHub</a>
+    </div>
+  </div>
+  <div class="project-card">
+    <div class="project-header">
+      <h2><a href="Projects/cli-games.html">CLI Games</a></h2>
+      <span class="project-tech">C · Windows API</span>
+    </div>
+    <p>Classic games written in C, playable in the Windows Terminal.</p>
+    <div class="project-links">
+      <a href="Projects/cli-games.html" class="btn">Detail</a>
+    </div>
+  </div>
+</div>
 
+<script src="main.js"></script>
 </body>
-
 </html>

@@ -1,43 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" data-theme="light">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Physics Visualizer</title>
-    <link rel="stylesheet" href="../style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Jeevanand · φ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=LINE+Seed+JP&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
 </head>
-
 <body>
 
-    <header>
-        <h1>PhysicsVisualizer</h1>
-        <nav>
-            <h4><a href="../index.html">HomePage</a></h4>
-            <h4><a href="../projects.html">Projects</a></h4>
-            <h4><a href="../about.html">About</a></h4>
-        </nav>
-    </header>
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
 
-    <main>
-        <div class="project-card">
-            <img src="Assets/physicsvisualizer.svg" alt="Physics Visualizer"
-                style="background-color: black; padding: 10px;">
-            <p>Explore and Simulate Physics Scenes in real-time 3D with your favourite AI Assistant in your browser.</p>
-            <div class="buttons">
-                <a href="https://physicsvisualizer.vercel.app/" target="_blank">Open App</a>
-            </div>
-            <div class="project-tech" style="margin-top: 1rem;">
-                <a href="https://github.com/jeevanandmaurya/physicsvisualizer" target="_blank">View GitHub
-                    Repository</a>
-            </div>
-        </div>
-    </main>
+<header>
+  <nav>
+    <a href="../index.html" class="nav-link"><span class="sep">/</span> home</a>
+    <a href="../projects.html" class="nav-link active"><span class="sep">/</span> projects</a>
+    <a href="../about.html" class="nav-link"><span class="sep">/</span> about</a>
+    <span class="nav-spacer"></span>
+    <button id="theme-toggle" aria-label="Toggle theme">
+      <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+      <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+        <circle cx="12" cy="12" r="5"/>
+        <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+        <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+      </svg>
+    </button>
+  </nav>
+</header>
 
-    <footer>
-        <p>© 2025 Physics Visualizer</p>
-    </footer>
+<div class="about-wrap">
+  <section>
+    <h1>Physics Visualizer</h1>
+    <p>Explore and simulate physics scenes in real-time 3D with your favourite AI assistant in your browser. Built with React, Three.js, Cannon.js, and JXGraph.</p>
+    <img src="Assets/physicsvisualizer.svg" alt="Physics Visualizer" class="project-image">
+    <div class="project-links">
+      <a href="https://physicsvisualizer.vercel.app/" class="btn btn-primary" target="_blank">Open App</a>
+      <a href="https://github.com/jeevanandmaurya/physicsvisualizer" class="btn" target="_blank">GitHub</a>
+    </div>
+    <div class="project-tech" style="margin-top:13px">React · Three.js · Cannon.js · JXGraph</div>
+  </section>
+</div>
 
+<script src="../main.js"></script>
 </body>
-
 </html>

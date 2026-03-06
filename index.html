@@ -1,65 +1,88 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HomePage</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Jeevanand · φ</title>
+  <meta name="description" content="Jeevanand Maurya — BTech CSE-AI student, aspiring AI Engineer & Full-Stack Developer." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=LINE+Seed+JP&family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-  <header>
-    <h1>HomePage</h1>
-    <nav>
-      <h4><a href="index.html">HomePage</a></h4>
-      <h4><a href="projects.html">Projects</a></h4>
-      <h4><a href="about.html">About</a></h4>
-    </nav>
-  </header>
-  <main>
-    <section id="left">
-      <section id="Introduction">
-        <h1>Welcome to My Page</h1>
-        <p>Hi, I'm Jeevanand Maurya.</p>
-        <p>I'm a BTech Student in CSE-AI At <a href="https://www.lkouniv.ac.in/"> Lucknow University</a>.</p>
-        <p>Batch : 2024-28</p>
-      </section>
-      <section id="Skills">
-        <h1>Skills</h1>
-        <ul>
-          <li>C/C++</li>
-          <li>Basic -> HTML CSS JS React</li>
-        </ul>
-      </section>
-      <section id="Featured-Projects">
-        <h1>Featured Projects</h1>
-        <ul>
-          <li><a href="Projects/physicsvisualizer.html">PhysicsVisualizer</a></li>
-          <li><a href="https://jeevanandmaurya.github.io/web-projects/Snake/index.html">Snake AI</a></li>
-        </ul>
-      </section>
+
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
+
+<header>
+  <nav>
+    <a href="index.html" class="nav-link active"><span class="sep">/</span> home</a>
+    <a href="projects.html" class="nav-link"><span class="sep">/</span> projects</a>
+    <a href="about.html" class="nav-link"><span class="sep">/</span> about</a>
+    <span class="nav-spacer"></span>
+    <button id="theme-toggle" aria-label="Toggle theme">
+      <!-- Moon (shown in light mode) -->
+      <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+      <!-- Sun (shown in dark mode, hidden initially) -->
+      <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+        <circle cx="12" cy="12" r="5"/>
+        <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+        <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+      </svg>
+    </button>
+  </nav>
+</header>
+
+<main>
+  <section id="left">
+    <section id="Introduction">
+      <h1>Jeevanand Maurya</h1>
+      <p>BTech CSE-AI at <a href="https://www.lkouniv.ac.in/" target="_blank">Lucknow University</a>. Batch 2024–28.</p>
+      <p>Aspiring AI Engineer & Full-Stack Developer. I learn by building — AI systems, web apps, and things in between.</p>
     </section>
-
-    <section id="right">
-      <section id="Profile">
-        <h1>Profile</h1>
-        <!-- <img width="120" src="" alt="Profile Image"> -->
-      </section>
-
-      <section id="Socials">
-        <h1>Socials</h1>
-        <a href="https://www.x.com/jeevanandmaurya">Twitter/X</a>
-        <a href="https://www.linkedin.com/in/jeevanandmaurya/">LinkedIn</a>
-        <a href="https://www.youtube.com/@JeevanandMaurya">YouTube</a>
-
-        <h1>Coding Platforms</h1>
-        <a href="https://github.com/jeevanandmaurya">GitHub</a>
-        <a href="https://leetcode.com/u/Jeevanand01/">LeetCode</a>
-        <a href="https://www.geeksforgeeks.org/user/jeevanandmaurya/">GeeksForGeeks</a>
-      </section>
+    <section id="Skills">
+      <h2>Skills</h2>
+      <ul>
+        <li>Python</li>
+        <li>AI Engineering (AIE) · LLMs · Agents</li>
+        <li>React</li>
+        <li>HTML · CSS · JavaScript · TypeScript</li>
+        <li>C / C++ · Data Structures & Algorithms · Tui</li>
+      </ul>
     </section>
-  </main>
+    <section id="Featured-Projects">
+      <h2>Featured Projects</h2>
+      <ul>
+        <li><a href="Projects/physicsvisualizer.html">Physics Visualizer</a></li>
+        <li><a href="https://jeevanandmaurya.github.io/web-projects/Snake/index.html" target="_blank">Snake AI</a></li>
+      </ul>
+    </section>
+  </section>
+
+  <section id="right">
+    <section id="Socials">
+      <div class="socials-wrapper">
+        <div class="socials-col">
+          <h2>Socials</h2>
+          <a href="https://www.x.com/jeevanandmaurya" target="_blank">Twitter / X</a>
+          <a href="https://www.linkedin.com/in/jeevanandmaurya/" target="_blank">LinkedIn</a>
+          <a href="https://www.youtube.com/@JeevanandMaurya" target="_blank">YouTube</a>
+        </div>
+        <div class="socials-col">
+          <h2>Code</h2>
+          <a href="https://github.com/jeevanandmaurya" target="_blank">GitHub</a>
+          <a href="https://leetcode.com/u/Jeevanand01/" target="_blank">LeetCode</a>
+          <a href="https://www.geeksforgeeks.org/user/jeevanandmaurya/" target="_blank">GeeksForGeeks</a>
+        </div>
+      </div>
+    </section>
+  </section>
+</main>
+
+<script src="main.js"></script>
 </body>
-
 </html>

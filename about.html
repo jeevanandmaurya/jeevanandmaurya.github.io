@@ -1,42 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About Me</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Jeevanand · φ</title>
+  <meta name="description" content="About Jeevanand Maurya — BTech CSE-AI student, aspiring AI Engineer & Full-Stack Developer." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=LINE+Seed+JP&family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-  <header>
-    <h1>About Me</h1>
-    <nav>
-      <h4><a href="index.html">HomePage</a></h4>
-      <h4><a href="projects.html">Projects</a></h4>
-      <h4><a href="about.html">About</a></h4>
-    </nav>
-  </header>
 
-  <main>
-    <section>
-      <h1>About Me</h1>
-      <p>I'm a developer who loves building cool things.</p>
-      <p>I'm interested in Artificial Intelligence that has physical awareness like humans.</p>
-    </section>
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
 
-    <section>
-      <h1>Interests</h1>
-      <ul>
-        <li>AIML - Artificial Intelligence and Machine Learning</li>
-        <li>AIE - Artificial Intelligence Engineering</li>
-        <li>PINN - Physics-Informed Neural Networks</li>
-        <li>Web Dev - Web Development</li>
-      </ul>
-    </section>
-  </main>
+<header>
+  <nav>
+    <a href="index.html" class="nav-link"><span class="sep">/</span> home</a>
+    <a href="projects.html" class="nav-link"><span class="sep">/</span> projects</a>
+    <a href="about.html" class="nav-link active"><span class="sep">/</span> about</a>
+    <span class="nav-spacer"></span>
+    <button id="theme-toggle" aria-label="Toggle theme">
+      <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+      <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+        <circle cx="12" cy="12" r="5"/>
+        <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+        <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+      </svg>
+    </button>
+  </nav>
+</header>
 
+<div class="about-wrap">
+  <section>
+    <h1>About</h1>
+    <p>I'm a BTech CSE-AI student who loves building at the edge of science and technology. I'm working toward AI Engineering and Full-Stack development — learning by making real things.</p>
+  </section>
+  <section>
+    <h2>Interests</h2>
+    <ul>
+      <li>AIML — Artificial Intelligence &amp; Machine Learning</li>
+      <li>AIE — AI Engineering &amp; LLM Systems</li>
+      <li>Full-Stack — Web apps &amp; Interactive systems</li>
+      <li>PINN — Physics-Informed Neural Networks</li>
+    </ul>
+  </section>
+</div>
 
+<script src="main.js"></script>
 </body>
-
 </html>
