@@ -25,6 +25,15 @@
   --header-bg: rgba(8,8,16,0.76);
 }
 
+[data-theme="light"] {
+  --bg: #F9F7F4;
+  --fg: #1A1A1A;
+  --muted: #888;
+  --border: rgba(0,0,0,0.09);
+  --accent: #C9A84C;
+  --header-bg: rgba(249,247,244,0.82);
+}
+
 /* ── Reset ───────────────────────────────────────────────────────────────── */
 *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
 
@@ -44,7 +53,14 @@
 #bg-canvas {
   position: fixed; inset: 0;
   width: 100%; height: 100%;
-  z-index: 0; pointer-events: none;
+  z-index: 2; pointer-events: none;
+}
+
+#theme-transition-canvas {
+  position: fixed; inset: 0;
+  width: 100%; height: 100%;
+  z-index: 1; pointer-events: none;
+  will-change: transform;
 }
 
 /* ── Base ─────────────────────────────────────────────────────────────────── */
@@ -196,7 +212,7 @@ section + section {
 
 /* ── Featured Projects ────────────────────────────────────────────────────── */
 #Featured-Projects li { margin-bottom: var(--s1); }
-#Featured-Projects a {
+#Featured-Projects .featured-name {
   font-family: var(--font-mono);
   font-size: .8rem;
   color: var(--muted);
@@ -204,14 +220,32 @@ section + section {
   padding-left: var(--s2);
   transition: color .2s;
 }
-#Featured-Projects a::before {
+#Featured-Projects .featured-name::before {
   content: '→';
   position: absolute; left: 0;
   color: var(--border);
   transition: color .2s;
 }
-#Featured-Projects a:hover { color: var(--accent); }
-#Featured-Projects a:hover::before { color: var(--accent); }
+#Featured-Projects .featured-name:hover { color: var(--accent); }
+#Featured-Projects .featured-name:hover::before { color: var(--accent); }
+
+.featured-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--s1);
+}
+.featured-head h2 { margin-bottom: 0; }
+#Featured-Projects li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--s1);
+}
+.featured-btns { display: flex; gap: 6px; flex-shrink: 0; }
+.featured-btns .btn { padding: 2px 8px; font-size: .65rem; }
+.featured-btns .btn::before, .featured-head .btn::before { content: none; }
+.featured-head .btn, .featured-btns .btn { padding-left: 8px; }
 
 /* ── Projects page ────────────────────────────────────────────────────────── */
 .projects-stats {
@@ -371,4 +405,10 @@ footer {
   nav { gap: var(--s2); }
   .projects-grid { padding: var(--s3) var(--s3); }
   .about-wrap { padding: var(--s3) var(--s3); }
+}
+
+/* ── Theme Transition Content Stacking context ───────────────────────────── */
+main, .about-wrap, .projects-grid, .projects-stats, footer {
+  position: relative;
+  z-index: 2;
 }
