@@ -1,133 +1,95 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-  <title>Jeevanand · φ</title>
-  <meta name="description" content="Jeevanand Maurya — BTech CSE-AI student, aspiring AI Engineer & Full-Stack Developer." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=LINE+Seed+JP&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jeevanand Maurya</title>
+<meta name="description" content="Jeevanand Maurya — BTech CSE-AI student, aspiring AI Engineer &amp; Full-Stack Developer.">
+<meta property="og:title" content="Jeevanand Maurya">
+<meta property="og:description" content="Jeevanand Maurya — BTech CSE-AI student, aspiring AI Engineer &amp; Full-Stack Developer.">
+<meta property="og:image" content="https://jeevanandmaurya.github.io/Projects/Assets/shots/vanaj.webp">
+<meta name="theme-color" content="#0D0E0B">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2317140E'/%3E%3Ctext x='16' y='24' font-family='Georgia,serif' font-size='24' text-anchor='middle' fill='%23E8C66D'%3E%CF%86%3C/text%3E%3C/svg%3E">
+<script>(function(){var t;try{t=localStorage.getItem('theme')}catch(e){}if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
-<body>
-
-<canvas id="bg-canvas" aria-hidden="true"></canvas>
-
-<header>
-  <nav>
-    <a href="index.html" class="nav-link active"><span class="sep">/</span> home</a>
-    <a href="projects.html" class="nav-link"><span class="sep">/</span> projects</a>
-    <a href="about.html" class="nav-link"><span class="sep">/</span> about</a>
-    <span class="nav-spacer"></span>
-    <button id="theme-toggle" aria-label="Toggle theme">
-      <!-- Moon (shown in light mode) -->
-      <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-      </svg>
-      <!-- Sun (shown in dark mode, hidden initially) -->
-      <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:none">
-        <circle cx="12" cy="12" r="5"/>
-        <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
-        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-        <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
-        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-      </svg>
-    </button>
-  </nav>
+<body class="is-home">
+<a class="skip" href="#content">Skip to content</a>
+<header class="bar">
+  <a class="mark" href="index.html" aria-label="Jeevanand Maurya, home"><span class="phi">φ</span><span class="mark-name">Jeevanand</span></a>
+  <nav aria-label="Main"><a href="index.html" aria-current=page>Home</a><a href="projects.html">Projects</a><a href="about.html">About</a></nav>
+  <button id="theme" type="button" aria-label="Switch between light and dark"><svg class="i-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.800 9.800z"/></svg><svg class="i-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.500"/><path d="M12 2v2.500M12 19.500V22M2 12h2.500M19.500 12H22M4.900 4.900l1.800 1.800M17.300 17.300l1.800 1.800M4.900 19.100l1.800-1.800M17.300 6.700l1.800-1.800"/></svg></button>
 </header>
-
-<main>
-  <section id="left">
-    <section id="Introduction">
-      <h1>Jeevanand Maurya</h1>
-      <p>BTech CSE-AI at <a href="https://www.lkouniv.ac.in/" target="_blank">Lucknow University</a>. Batch 2024–28.</p>
-      <p>Aspiring AI Engineer & Full-Stack Developer. I learn by building — AI systems, web apps, and things in between.</p>
-    </section>
-    <section id="Skills">
-      <h2>Skills</h2>
-      <ul>
-        <li>Python · RL (MuJoCo · SB3 PPO · Gymnasium)</li>
-        <li>AI Engineering (AIE) · LLMs · Agents</li>
-        <li>React · Next.js · Three.js · Rapier</li>
-        <li>Supabase · Postgres (Auth + RLS) · Neon</li>
-        <li>HTML · CSS · JavaScript · TypeScript · Tailwind</li>
-        <li>AI-assisted coding · Codex · Claude · OpenCode · AI agents</li>
-        <li>C / C++ · Data Structures & Algorithms · Tui</li>
-      </ul>
-    </section>
-    <section id="Featured-Projects">
-      <div class="featured-head">
-        <h2>Featured Projects</h2>
-        <a href="projects.html" class="btn">all →</a>
-      </div>
-      <ul>
-        <li>
-          <a class="featured-name" href="https://jeevanandmaurya.github.io/vanaj-forest-born/" target="_blank">VANAJ: Forest-Born</a>
-          <span class="featured-btns">
-            <a class="btn" href="https://jeevanandmaurya.github.io/vanaj-forest-born/" target="_blank">Play</a>
-            <a class="btn" href="https://github.com/jeevanandmaurya/vanaj-forest-born" target="_blank">GitHub</a>
-          </span>
-        </li>
-        <li>
-          <a class="featured-name" href="https://aivideocomposer.vercel.app" target="_blank">AI Video Composer</a>
-          <span class="featured-btns">
-            <a class="btn" href="https://aivideocomposer.vercel.app" target="_blank">Open</a>
-            <a class="btn" href="https://github.com/jeevanandmaurya/AI-Video-Composer" target="_blank">GitHub</a>
-          </span>
-        </li>
-        <li>
-          <a class="featured-name" href="Projects/physicsvisualizer.html">Physics Visualizer</a>
-          <span class="featured-btns">
-            <a class="btn" href="https://physicsvisualizer.vercel.app/" target="_blank">Open</a>
-            <a class="btn" href="Projects/physicsvisualizer.html">Detail</a>
-          </span>
-        </li>
-        <li>
-          <a class="featured-name" href="https://jeevanandmaurya.github.io/humannoid-balance/" target="_blank">Humanoid Balance — RL</a>
-          <span class="featured-btns">
-            <a class="btn" href="https://jeevanandmaurya.github.io/humannoid-balance/" target="_blank">Open</a>
-            <a class="btn" href="https://github.com/jeevanandmaurya/humannoid-balance" target="_blank">GitHub</a>
-          </span>
-        </li>
-        <li>
-          <a class="featured-name" href="https://gva-beta.vercel.app/" target="_blank">Generative Visual Agent</a>
-          <span class="featured-btns">
-            <a class="btn" href="https://gva-beta.vercel.app/" target="_blank">Open</a>
-            <a class="btn" href="https://github.com/jeevanandmaurya/GVA" target="_blank">GitHub</a>
-          </span>
-        </li>
-        <li>
-          <a class="featured-name" href="https://xtwitterclone.vercel.app" target="_blank">Twitter Clone</a>
-          <span class="featured-btns">
-            <a class="btn" href="https://xtwitterclone.vercel.app" target="_blank">Open</a>
-            <a class="btn" href="https://github.com/jeevanandmaurya/twitter-clone" target="_blank">GitHub</a>
-          </span>
-        </li>
-      </ul>
-    </section>
-  </section>
-
-  <section id="right">
-    <section id="Socials">
-      <div class="socials-wrapper">
-        <div class="socials-col">
-          <h2>Socials</h2>
-          <a href="https://www.x.com/jeevanandmaurya" target="_blank">Twitter / X</a>
-          <a href="https://www.linkedin.com/in/jeevanandmaurya/" target="_blank">LinkedIn</a>
-          <a href="https://www.youtube.com/@JeevanandMaurya" target="_blank">YouTube</a>
-        </div>
-        <div class="socials-col">
-          <h2>Code</h2>
-          <a href="https://github.com/jeevanandmaurya" target="_blank">GitHub</a>
-          <a href="https://leetcode.com/u/Jeevanand01/" target="_blank">LeetCode</a>
-          <a href="https://www.geeksforgeeks.org/user/jeevanandmaurya/" target="_blank">GeeksForGeeks</a>
-        </div>
-      </div>
-    </section>
-  </section>
+<main id="content">
+<section class="hero">
+  <canvas id="tree" aria-hidden="true"></canvas>
+  <div class="hero-text">
+    <p class="eyebrow">BTech CSE-AI · <a href="https://www.lkouniv.ac.in/" target="_blank" rel="noopener">Lucknow University</a> · Batch 2024–28</p>
+    <h1>Jeevanand<br>Maurya</h1>
+    <p class="lede">Aspiring AI Engineer &amp; Full-Stack Developer. I learn by building — AI systems, web apps, and things in between.</p>
+    <div class="links"><a class="btn btn-go" href="#work">See the work</a><a class="btn" href="https://github.com/jeevanandmaurya/" target="_blank" rel="noopener">GitHub</a></div>
+  </div>
+</section>
+<section id="work" class="section">
+  <h2 class="label"><span>01</span>Selected work</h2>
+  <article class="work work-lead">
+  <a class="shot" href="https://jeevanandmaurya.github.io/vanaj-forest-born/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="Projects/Assets/shots/vanaj.webp" alt="A boy with a spear stands in a painted green forest, with a deer, a gaur, a wolf and a dhole behind him" width="960" height="600" sizes="100vw" decoding="async"></a>
+  <div class="work-text">
+    <h3><a href="https://jeevanandmaurya.github.io/vanaj-forest-born/" target="_blank" rel="noopener">VANAJ: Forest-Born</a></h3>
+    <p class="tech">Three.js · Rapier · Web Audio</p>
+    <p>3D survival story in the browser: a boy raised by wolves in the Pench forest of central India. Painted look, climbable trees that bend under him, rope swinging, animal AI, tree felling, a raga score, and touch controls for phones.</p>
+    <div class="links"><a class="btn btn-go" href="https://jeevanandmaurya.github.io/vanaj-forest-born/" target="_blank" rel="noopener">Play<span class="visually-hidden">: VANAJ: Forest-Born</span></a><a class="btn" href="https://github.com/jeevanandmaurya/vanaj-forest-born" target="_blank" rel="noopener">GitHub<span class="visually-hidden">: VANAJ: Forest-Born</span></a></div>
+  </div>
+</article>
+  <div class="pair"><article class="work wide">
+  <a class="shot" href="https://aivideocomposer.vercel.app" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="Projects/Assets/shots/aivideo.webp" alt="AI Video Composer landing page" width="960" height="600" sizes="(max-width:760px) 100vw, 50vw" loading=lazy decoding="async"></a>
+  <div class="work-text">
+    <h3><a href="https://aivideocomposer.vercel.app" target="_blank" rel="noopener">AI Video Composer</a></h3>
+    <p class="tech">React · Vite · NVIDIA NIM · mp4-muxer</p>
+    <p>Prompt-to-video studio: AI director generates 15–22 scene JSON, composition engine builds timeline, brutalist dashboard + editor with streaming output and in-browser MP4 export.</p>
+    <div class="links"><a class="btn btn-go" href="https://aivideocomposer.vercel.app" target="_blank" rel="noopener">Open<span class="visually-hidden">: AI Video Composer</span></a></div>
+  </div>
+</article><article class="work ">
+  <a class="shot" href="https://physicsvisualizer.vercel.app/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="Projects/Assets/shots/physics.webp" alt="Physics Visualizer home screen" width="960" height="600" sizes="(max-width:760px) 100vw, 50vw" loading=lazy decoding="async"></a>
+  <div class="work-text">
+    <h3><a href="https://physicsvisualizer.vercel.app/" target="_blank" rel="noopener">Physics Visualizer</a></h3>
+    <p class="tech">React · Three.js · Rapier.js</p>
+    <p>A web app to visualize physics scenes in 3D in real-time. Built with React and Three.js.</p>
+    <div class="links"><a class="btn btn-go" href="https://physicsvisualizer.vercel.app/" target="_blank" rel="noopener">Open<span class="visually-hidden">: Physics Visualizer</span></a><a class="btn" href="Projects/physicsvisualizer.html">Detail<span class="visually-hidden">: Physics Visualizer</span></a></div>
+  </div>
+</article></div>
+  <div class="pair pair-flip"><article class="work ">
+  <a class="shot" href="https://jeevanandmaurya.github.io/humannoid-balance/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="Projects/Assets/shots/humanoid.webp" alt="Write-up of the humanoid balance project with its results" width="960" height="600" sizes="(max-width:760px) 100vw, 50vw" loading=lazy decoding="async"></a>
+  <div class="work-text">
+    <h3><a href="https://jeevanandmaurya.github.io/humannoid-balance/" target="_blank" rel="noopener">Humanoid Balance — RL</a></h3>
+    <p class="tech">Python · MuJoCo · SB3 PPO · Gymnasium</p>
+    <p>Self-balancing RL policies for a 17-actuator humanoid + quadruped: custom balance envs, push curriculum, deterministic training, web training mirror.</p>
+    <div class="links"><a class="btn btn-go" href="https://jeevanandmaurya.github.io/humannoid-balance/" target="_blank" rel="noopener">Open<span class="visually-hidden">: Humanoid Balance — RL</span></a><a class="btn" href="https://github.com/jeevanandmaurya/humannoid-balance" target="_blank" rel="noopener">GitHub<span class="visually-hidden">: Humanoid Balance — RL</span></a></div>
+  </div>
+</article><article class="work wide">
+  <a class="shot" href="https://gva-beta.vercel.app/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="Projects/Assets/shots/gva.webp" alt="Generative Visualization Agent home page with a prompt box" width="960" height="600" sizes="(max-width:760px) 100vw, 50vw" loading=lazy decoding="async"></a>
+  <div class="work-text">
+    <h3><a href="https://gva-beta.vercel.app/" target="_blank" rel="noopener">Generative Visual Agent</a></h3>
+    <p class="tech">React · Three.js · Gemini · Rapier</p>
+    <p>YouTube-style AI tutor that turns prompts into scrubbable 3D/math timelines — continuous timeline, chapters, KaTeX + Mermaid renderers, IndexedDB library.</p>
+    <div class="links"><a class="btn btn-go" href="https://gva-beta.vercel.app/" target="_blank" rel="noopener">Open<span class="visually-hidden">: Generative Visual Agent</span></a></div>
+  </div>
+</article></div>
+  <p class="more"><a class="btn" href="projects.html">All 13 projects →</a></p>
+</section>
+<section class="section">
+  <h2 class="label"><span>02</span>What I work with</h2>
+  <dl class="skills"><div><dt>Reinforcement learning</dt><dd>Python · MuJoCo · SB3 PPO · Gymnasium</dd></div><div><dt>AI engineering</dt><dd>AIE · LLMs · Agents</dd></div><div><dt>Interactive web</dt><dd>React · Next.js · Three.js · Rapier</dd></div><div><dt>Data</dt><dd>Supabase · Postgres (Auth + RLS) · Neon</dd></div><div><dt>Web foundations</dt><dd>HTML · CSS · JavaScript · TypeScript · Tailwind</dd></div><div><dt>AI-assisted coding</dt><dd>Codex · Claude · OpenCode · AI agents</dd></div><div><dt>Systems</dt><dd>C / C++ · Data Structures &amp; Algorithms · TUI</dd></div></dl>
+</section>
+<section class="section">
+  <h2 class="label"><span>03</span>Find me</h2>
+  <div class="else"><div><h3>Code</h3><ul><li><a href="https://github.com/jeevanandmaurya/" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a></li><li><a href="https://leetcode.com/u/Jeevanand01/" target="_blank" rel="noopener">LeetCode <span aria-hidden="true">↗</span></a></li><li><a href="https://www.geeksforgeeks.org/user/jeevanandmaurya/" target="_blank" rel="noopener">GeeksForGeeks <span aria-hidden="true">↗</span></a></li></ul></div><div><h3>Elsewhere</h3><ul><li><a href="https://www.x.com/jeevanandmaurya" target="_blank" rel="noopener">Twitter / X <span aria-hidden="true">↗</span></a></li><li><a href="https://www.linkedin.com/in/jeevanandmaurya/" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a></li><li><a href="https://www.youtube.com/@JeevanandMaurya" target="_blank" rel="noopener">YouTube <span aria-hidden="true">↗</span></a></li></ul></div></div>
+</section>
 </main>
-
+<footer class="foot"><span>© 2026 Jeevanand Maurya</span><span><a href="https://github.com/jeevanandmaurya/" target="_blank" rel="noopener">GitHub</a> · <a href="https://www.linkedin.com/in/jeevanandmaurya/" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://www.x.com/jeevanandmaurya" target="_blank" rel="noopener">X</a></span></footer>
 <script src="main.js"></script>
 </body>
 </html>

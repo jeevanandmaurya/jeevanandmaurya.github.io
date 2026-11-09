@@ -1,52 +1,32 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Pong CLI · Jeevanand Maurya</title>
-  <meta name="description" content="Player vs Player Pong game for the Command Line Interface / Windows PowerShell. Written in C." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=LINE+Seed+JP&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pong CLI · Jeevanand Maurya</title>
+<meta name="description" content="Player vs Player Pong game for the Command Line Interface / Windows PowerShell. Written in C.">
+<meta property="og:title" content="Pong CLI · Jeevanand Maurya">
+<meta property="og:description" content="Player vs Player Pong game for the Command Line Interface / Windows PowerShell. Written in C.">
+<meta property="og:image" content="https://jeevanandmaurya.github.io/Projects/Assets/shots/vanaj.webp">
+<meta name="theme-color" content="#0D0E0B">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2317140E'/%3E%3Ctext x='16' y='24' font-family='Georgia,serif' font-size='24' text-anchor='middle' fill='%23E8C66D'%3E%CF%86%3C/text%3E%3C/svg%3E">
+<script>(function(){var t;try{t=localStorage.getItem('theme')}catch(e){}if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
 </head>
 <body>
-
-<canvas id="bg-canvas" aria-hidden="true"></canvas>
-
-<header>
-  <nav>
-    <a href="../index.html" class="nav-link"><span class="sep">/</span> home</a>
-    <a href="../projects.html" class="nav-link active"><span class="sep">/</span> projects</a>
-    <a href="../about.html" class="nav-link"><span class="sep">/</span> about</a>
-    <span class="nav-spacer"></span>
-    <button id="theme-toggle" aria-label="Toggle theme">
-      <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-      </svg>
-      <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:none">
-        <circle cx="12" cy="12" r="5"/>
-        <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
-        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-        <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
-        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-      </svg>
-    </button>
-  </nav>
+<a class="skip" href="#content">Skip to content</a>
+<header class="bar">
+  <a class="mark" href="../index.html" aria-label="Jeevanand Maurya, home"><span class="phi">φ</span><span class="mark-name">Jeevanand</span></a>
+  <nav aria-label="Main"><a href="../index.html">Home</a><a href="../projects.html" aria-current=page>Projects</a><a href="../about.html">About</a></nav>
+  <button id="theme" type="button" aria-label="Switch between light and dark"><svg class="i-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.800 9.800z"/></svg><svg class="i-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.500"/><path d="M12 2v2.500M12 19.500V22M2 12h2.500M19.500 12H22M4.900 4.900l1.800 1.800M17.300 17.300l1.800 1.800M4.900 19.100l1.800-1.800M17.300 6.700l1.800-1.800"/></svg></button>
 </header>
-
-<div class="about-wrap">
-  <section>
-    <h1>Pong CLI</h1>
-    <p>Player vs Player Pong game for the Command Line Interface / Windows PowerShell. Written in C.</p>
-    <img src="Assets/ponggame.png" alt="Pong CLI" class="project-image">
-    <div class="project-links">
-      <a href="https://github.com/jeevanandmaurya/Projects/tree/main/pong" class="btn" target="_blank">GitHub</a>
-    </div>
-    <div class="project-tech" style="margin-top:13px">C · Windows API</div>
-  </section>
-</div>
-
+<main id="content">
+<section class="page-head"><p class="eyebrow"><a href="../projects.html">← Projects</a></p><h1>Pong CLI</h1><p class="lede">Player vs Player Pong game for the Command Line Interface / Windows PowerShell. Written in C.</p></section><section class="detail"><img class="detail-img" src="Assets/ponggame.png" alt="Pong CLI" loading="lazy" decoding="async"><div class="links"><a class="btn" href="https://github.com/jeevanandmaurya/Projects/tree/main/pong" target="_blank" rel="noopener">GitHub</a></div><p class="tech">C · Windows API</p></section>
+</main>
+<footer class="foot"><span>© 2026 Jeevanand Maurya</span><span><a href="https://github.com/jeevanandmaurya/" target="_blank" rel="noopener">GitHub</a> · <a href="https://www.linkedin.com/in/jeevanandmaurya/" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://www.x.com/jeevanandmaurya" target="_blank" rel="noopener">X</a></span></footer>
 <script src="../main.js"></script>
 </body>
 </html>
