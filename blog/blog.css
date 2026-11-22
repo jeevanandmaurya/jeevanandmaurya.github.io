@@ -4,7 +4,7 @@
 .post h3 { font: 600 1.1rem/1.3 var(--display); margin: var(--s4, 32px) 0 var(--s2, 12px); }
 .post p, .post li { line-height: 1.7; margin-bottom: var(--s2, 12px); }
 .post ul, .post ol { padding-left: 1.3em; margin-bottom: var(--s3, 20px); }
-.post a { color: var(--leaf); text-underline-offset: 3px; }
+.post a:not(.btn) { color: var(--leaf); text-underline-offset: 3px; }
 .post code { font: .88em var(--mono); background: var(--lift); padding: .1em .35em; border-radius: 3px; }
 .post pre { font: .84rem/1.6 var(--mono); background: var(--lift); border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px; overflow-x: auto; margin: 0 0 var(--s3, 20px); }
 .post pre code { background: none; padding: 0; }
@@ -38,16 +38,16 @@ table.data td.num, table.data th.num { text-align: right; font-family: var(--mon
 .post-list a:hover h2 { color: var(--gold); }
 
 /* demo */
-.demo { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 16px; margin-bottom: var(--s4, 32px); }
+.demo { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 320px); gap: 16px; margin-bottom: var(--s4, 32px); }
 #view { position: relative; height: min(68vh, 640px); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: #0d0f12; }
 #view canvas { width: 100%; height: 100%; display: block; }
 #status { position: absolute; left: 12px; bottom: 10px; font: .85rem var(--mono); color: #cfd6e0; }
-.panel { border: 1px solid var(--line); border-radius: 8px; padding: 14px; display: grid; gap: 10px; align-content: start; }
+.panel { min-width: 0; border: 1px solid var(--line); border-radius: 8px; padding: 14px; display: grid; gap: 10px; align-content: start; }
 .panel label { display: grid; gap: 4px; font: 500 .78rem var(--mono); color: var(--soft); text-transform: uppercase; letter-spacing: .04em; }
-.panel select, .panel input { font: .95rem var(--sans); padding: 7px 8px; border: 1px solid var(--line); border-radius: 5px; background: var(--paper); color: var(--ink); }
+.panel select, .panel input { width: 100%; min-width: 0; box-sizing: border-box; font: .95rem var(--sans); padding: 7px 8px; border: 1px solid var(--line); border-radius: 5px; background: var(--paper); color: var(--ink); }
 .panel .row2 { display: flex; gap: 8px; } .panel .row2 .btn { flex: 1; justify-content: center; }
-.panel dl { display: grid; grid-template-columns: auto 1fr; gap: 4px 10px; font-size: .88rem; margin: 0; }
-.panel dt { color: var(--soft); } .panel dd { margin: 0; text-align: right; font-family: var(--mono); }
+.panel dl { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 10px; font-size: .88rem; margin: 0; }
+.panel dt { color: var(--soft); } .panel dd { margin: 0; overflow-wrap: anywhere; text-align: right; font-family: var(--mono); }
 #spark { width: 100%; height: 64px; display: block; background: var(--lift); border-radius: 4px; }
 #compare-out { min-height: 20px; }
 @media (max-width: 860px) { .demo { grid-template-columns: 1fr; } #view { height: 56vh; } }

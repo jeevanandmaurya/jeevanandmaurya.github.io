@@ -33,12 +33,12 @@
 <div id="view"><span id="status"></span></div>
 <div class="panel">
 <label>Scene<select id="demo"><option value="scene:balls">8,000 spheres in a bin</option><option value="scene:pile">3,136 mixed shapes, random rotations</option><option value="scene:pyramid">4 box pyramids, 1,860 boxes (no sleep)</option><option value="scene:terrain">2,028 props on a trimesh terrain</option><option value="scene:chains">40 chains, 1,200 joints</option><option value="demo:keva">Rapier testbed: Keva tower</option><option value="demo:pyramid">Rapier testbed: pyramid</option><option value="demo:joints">Rapier testbed: joints</option></select></label>
-<label>Engine<select id="engine"><option value="threads" data-short="Threads">Multi-threaded (@jeevanand/rapier3d-threads)</option><option value="official" data-short="Official SIMD">Official single-thread (@dimforge/rapier3d-simd-compat)</option></select></label>
+<label>Engine<select id="engine"><option value="threads" data-short="Threads">Multi-threaded (threads build)</option><option value="official" data-short="Official SIMD">Official SIMD, 1 thread</option></select></label>
 <label>Threads<input id="threads" type="number" min="1" value="4"></label>
 <div class="row2"><button class="btn btn-go" id="play" type="button" data-on="1">Pause</button><button class="btn" id="reset" type="button">Reset</button></div>
 <dl><dt>Engine</dt><dd id="sEngine">–</dd><dt>Bodies</dt><dd id="sBodies">–</dd><dt>Step mean / p95</dt><dd id="sStep">–</dd><dt>Render FPS</dt><dd id="sFps">–</dd></dl>
 <canvas id="spark" aria-label="Step time, last 240 steps; dashed line is the 16.7 ms frame budget"></canvas>
-<button class="btn" id="compare" type="button">Compare both engines (300 steps)</button>
+<button class="btn" id="compare" type="button">Compare engines (300 steps)</button>
 <div id="compare-out"></div>
 </div>
 </div>
