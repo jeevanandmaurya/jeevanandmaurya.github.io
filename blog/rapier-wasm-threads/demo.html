@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rapier threads: live demo · Jeevanand Maurya</title>
+<meta name="description" content="Run large Rapier physics scenes in your browser with the official single-threaded build or the multi-threaded build, and compare.">
+<meta property="og:title" content="Rapier threads: live demo">
+<meta property="og:description" content="Run large Rapier physics scenes in your browser with the official single-threaded build or the multi-threaded build, and compare.">
+<meta property="og:url" content="https://jeevanandmaurya.github.io/blog/rapier-wasm-threads/demo.html">
+<meta name="theme-color" content="#0D0E0B">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2317140E'/%3E%3Ctext x='16' y='24' font-family='Georgia,serif' font-size='24' text-anchor='middle' fill='%23E8C66D'%3E%CF%86%3C/text%3E%3C/svg%3E">
+<script>(function(){var t;try{t=localStorage.getItem('theme')}catch(e){}if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)})();</script>
+<script src="coi-serviceworker.js"></script>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.187.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.187.0/examples/jsm/"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../style.css">
+<link rel="stylesheet" href="../../blog/blog.css">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="bar">
+  <a class="mark" href="../../index.html" aria-label="Jeevanand Maurya, home"><span class="phi">φ</span><span class="mark-name">Jeevanand</span></a>
+  <nav aria-label="Main"><a href="../../index.html">Home</a><a href="../../projects.html">Projects</a><a href="../../blog.html" aria-current=page>Blog</a><a href="../../about.html">About</a></nav>
+  <button id="theme" type="button" aria-label="Switch between light and dark"><svg class="i-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.800 9.800z"/></svg><svg class="i-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.500"/><path d="M12 2v2.500M12 19.500V22M2 12h2.500M19.500 12H22M4.900 4.900l1.800 1.800M17.300 17.300l1.800 1.800M4.900 19.100l1.800-1.800M17.300 6.700l1.800-1.800"/></svg></button>
+</header>
+<main id="content">
+<section class="page-head"><p class="eyebrow"><a href="index.html">← Multi-threaded Rapier physics in the browser</a></p><h1>Live demo</h1>
+<p class="lede">Large scenes, simulated in a Web Worker. Switch between the official single-threaded SIMD build and the multi-threaded build, or press <strong>Compare</strong> to time both without rendering. Your CPU reports <span id="hc">?</span> logical cores.</p></section>
+<div class="demo">
+<div id="view"><span id="status"></span></div>
+<div class="panel">
+<label>Scene<select id="demo"><option value="scene:balls">8,000 spheres in a bin</option><option value="scene:pile">3,136 mixed shapes, random rotations</option><option value="scene:pyramid">4 box pyramids, 1,860 boxes (no sleep)</option><option value="scene:terrain">2,028 props on a trimesh terrain</option><option value="scene:chains">40 chains, 1,200 joints</option><option value="demo:keva">Rapier testbed: Keva tower</option><option value="demo:pyramid">Rapier testbed: pyramid</option><option value="demo:joints">Rapier testbed: joints</option></select></label>
+<label>Engine<select id="engine"><option value="threads" data-short="Threads">Multi-threaded (@jeevanand/rapier3d-threads)</option><option value="official" data-short="Official SIMD">Official single-thread (@dimforge/rapier3d-simd-compat)</option></select></label>
+<label>Threads<input id="threads" type="number" min="1" value="4"></label>
+<div class="row2"><button class="btn btn-go" id="play" type="button" data-on="1">Pause</button><button class="btn" id="reset" type="button">Reset</button></div>
+<dl><dt>Engine</dt><dd id="sEngine">–</dd><dt>Bodies</dt><dd id="sBodies">–</dd><dt>Step mean / p95</dt><dd id="sStep">–</dd><dt>Render FPS</dt><dd id="sFps">–</dd></dl>
+<canvas id="spark" aria-label="Step time, last 240 steps; dashed line is the 16.7 ms frame budget"></canvas>
+<button class="btn" id="compare" type="button">Compare both engines (300 steps)</button>
+<div id="compare-out"></div>
+</div>
+</div>
+<article class="post">
+<p class="muted">Grey bodies are asleep (Rapier skips them). Step times include only <code>world.step()</code>; reading transforms for rendering is separate. Scenes: five from <a href="https://github.com/jeevanandmaurya/rapier-wasm-threads">my benchmark</a> and three of Rapier's own <a href="https://github.com/dimforge/rapier/tree/master/bindings/typescript/testbed3d/src/demos">testbed demos</a> (Apache-2.0), unmodified. Cross-origin isolation on GitHub Pages comes from <a href="https://github.com/gzuidhof/coi-serviceworker">coi-serviceworker</a> (MIT).</p>
+<div class="post-nav"><a class="btn" href="index.html">Article</a><a class="btn" href="stats.html">Stats</a><a class="btn btn-go" href="demo.html" aria-current=page>Live demo</a><a class="btn" href="https://github.com/jeevanandmaurya/rapier-wasm-threads" target="_blank" rel="noopener">GitHub</a><a class="btn" href="https://www.npmjs.com/package/@jeevanand/rapier3d-threads" target="_blank" rel="noopener">npm</a></div>
+</article>
+</main>
+<footer class="foot"><span>© 2026 Jeevanand Maurya</span><span><a href="https://github.com/jeevanandmaurya/" target="_blank" rel="noopener">GitHub</a> · <a href="https://www.linkedin.com/in/jeevanandmaurya/" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://www.x.com/jeevanandmaurya" target="_blank" rel="noopener">X</a></span></footer>
+<script src="../../main.js"></script>
+<script type="module" src="demo.js"></script>
+</body>
+</html>

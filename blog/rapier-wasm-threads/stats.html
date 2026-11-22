@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rapier threads: stats · Jeevanand Maurya</title>
+<meta name="description" content="Benchmarks of Rapier single-threaded vs multi-threaded WebAssembly against native Rust, on scenes with 1,200 to 8,000 bodies.">
+<meta property="og:title" content="Rapier threads: stats">
+<meta property="og:description" content="Benchmarks of Rapier single-threaded vs multi-threaded WebAssembly against native Rust, on scenes with 1,200 to 8,000 bodies.">
+<meta property="og:url" content="https://jeevanandmaurya.github.io/blog/rapier-wasm-threads/stats.html">
+<meta name="theme-color" content="#0D0E0B">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2317140E'/%3E%3Ctext x='16' y='24' font-family='Georgia,serif' font-size='24' text-anchor='middle' fill='%23E8C66D'%3E%CF%86%3C/text%3E%3C/svg%3E">
+<script>(function(){var t;try{t=localStorage.getItem('theme')}catch(e){}if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../style.css">
+<link rel="stylesheet" href="../../blog/blog.css">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="bar">
+  <a class="mark" href="../../index.html" aria-label="Jeevanand Maurya, home"><span class="phi">φ</span><span class="mark-name">Jeevanand</span></a>
+  <nav aria-label="Main"><a href="../../index.html">Home</a><a href="../../projects.html">Projects</a><a href="../../blog.html" aria-current=page>Blog</a><a href="../../about.html">About</a></nav>
+  <button id="theme" type="button" aria-label="Switch between light and dark"><svg class="i-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.800 9.800z"/></svg><svg class="i-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.500"/><path d="M12 2v2.500M12 19.500V22M2 12h2.500M19.500 12H22M4.900 4.900l1.800 1.800M17.300 17.300l1.800 1.800M4.900 19.100l1.800-1.800M17.300 6.700l1.800-1.800"/></svg></button>
+</header>
+<main id="content">
+<section class="page-head"><p class="eyebrow"><a href="index.html">← Multi-threaded Rapier physics in the browser</a></p><h1>Stats</h1>
+<p class="lede">Mean <code>world.step()</code> time in milliseconds (lower is better), 600 steps at 60 Hz, same scene JSON loaded by every engine. 6-core / 12-thread Windows laptop, Chrome. Single runs; treat differences under ~15% as noise.</p></section>
+<article class="post">
+<div class="post-nav"><a class="btn" href="index.html">Article</a><a class="btn btn-go" href="stats.html" aria-current=page>Stats</a><a class="btn" href="demo.html">Live demo</a><a class="btn" href="https://github.com/jeevanandmaurya/rapier-wasm-threads" target="_blank" rel="noopener">GitHub</a><a class="btn" href="https://www.npmjs.com/package/@jeevanand/rapier3d-threads" target="_blank" rel="noopener">npm</a></div>
+<h2>Every engine, every scene</h2>
+<div class="table-wrap"><table class="data"><thead><tr><th>Scene</th><th class="num">Bodies</th><th class="num">Native 1T</th><th class="num">Native 6T</th><th class="num">WASM</th><th class="num">WASM SIMD</th><th class="num">WASM threads (6)</th><th class="num">vs SIMD</th></tr></thead><tbody>
+<tr><td>pyramid</td><td class="num">1,860</td><td class="num">4.70</td><td class="num">1.45</td><td class="num">13.85</td><td class="num">7.41</td><td class="num"><strong>1.44</strong></td><td class="num ok">5.1×</td></tr>
+<tr><td>pile</td><td class="num">3,136</td><td class="num">11.49</td><td class="num">4.89</td><td class="num">27.33</td><td class="num">14.90</td><td class="num"><strong>4.14</strong></td><td class="num ok">3.6×</td></tr>
+<tr><td>balls</td><td class="num">8,000</td><td class="num">10.67</td><td class="num">4.33</td><td class="num">21.38</td><td class="num">10.90</td><td class="num"><strong>4.06</strong></td><td class="num ok">2.7×</td></tr>
+<tr><td>chains</td><td class="num">1,200</td><td class="num">2.08</td><td class="num">1.18</td><td class="num">4.23</td><td class="num">2.71</td><td class="num"><strong>1.40</strong></td><td class="num ok">1.9×</td></tr>
+<tr><td>terrain</td><td class="num">2,028</td><td class="num">8.50</td><td class="num">3.29</td><td class="num">20.49</td><td class="num">9.86</td><td class="num"><strong>3.22</strong></td><td class="num ok">3.1×</td></tr>
+</tbody></table></div>
+<p>WASM threads with 6 threads lands at the same speed as native Rust with 6 threads, and 2–5× faster than the fastest official package (SIMD). Native and WASM runs ended in bit-identical final states.</p>
+
+<h3>pyramid · 1,860 bodies</h3><div class="table-wrap"><table class="data"><tbody><tr><td>rapier.js (WASM)</td><td class="num">13.85 ms</td><td class="barcell"><span class="hbar alt" style="width:100%"></span></td></tr><tr><td>rapier.js SIMD</td><td class="num">7.41 ms</td><td class="barcell"><span class="hbar alt" style="width:53.50180505415163%"></span></td></tr><tr><td>Native Rust, 1 thread</td><td class="num">4.70 ms</td><td class="barcell"><span class="hbar alt" style="width:33.93501805054152%"></span></td></tr><tr><td>WASM threads, 6 threads</td><td class="num">1.44 ms</td><td class="barcell"><span class="hbar" style="width:10.3971119133574%"></span></td></tr></tbody></table></div>
+<h3>pile · 3,136 bodies</h3><div class="table-wrap"><table class="data"><tbody><tr><td>rapier.js (WASM)</td><td class="num">27.33 ms</td><td class="barcell"><span class="hbar alt" style="width:100%"></span></td></tr><tr><td>rapier.js SIMD</td><td class="num">14.90 ms</td><td class="barcell"><span class="hbar alt" style="width:54.51884376143432%"></span></td></tr><tr><td>Native Rust, 1 thread</td><td class="num">11.49 ms</td><td class="barcell"><span class="hbar alt" style="width:42.041712403951706%"></span></td></tr><tr><td>WASM threads, 6 threads</td><td class="num">4.14 ms</td><td class="barcell"><span class="hbar" style="width:15.148188803512625%"></span></td></tr></tbody></table></div>
+<h3>balls · 8,000 bodies</h3><div class="table-wrap"><table class="data"><tbody><tr><td>rapier.js (WASM)</td><td class="num">21.38 ms</td><td class="barcell"><span class="hbar alt" style="width:100%"></span></td></tr><tr><td>rapier.js SIMD</td><td class="num">10.90 ms</td><td class="barcell"><span class="hbar alt" style="width:50.982226379794206%"></span></td></tr><tr><td>Native Rust, 1 thread</td><td class="num">10.67 ms</td><td class="barcell"><span class="hbar alt" style="width:49.906454630495794%"></span></td></tr><tr><td>WASM threads, 6 threads</td><td class="num">4.06 ms</td><td class="barcell"><span class="hbar" style="width:18.989710009354535%"></span></td></tr></tbody></table></div>
+<h3>chains · 1,200 bodies</h3><div class="table-wrap"><table class="data"><tbody><tr><td>rapier.js (WASM)</td><td class="num">4.23 ms</td><td class="barcell"><span class="hbar alt" style="width:100%"></span></td></tr><tr><td>rapier.js SIMD</td><td class="num">2.71 ms</td><td class="barcell"><span class="hbar alt" style="width:64.06619385342789%"></span></td></tr><tr><td>Native Rust, 1 thread</td><td class="num">2.08 ms</td><td class="barcell"><span class="hbar alt" style="width:49.1725768321513%"></span></td></tr><tr><td>WASM threads, 6 threads</td><td class="num">1.40 ms</td><td class="barcell"><span class="hbar" style="width:33.09692671394798%"></span></td></tr></tbody></table></div>
+<h3>terrain · 2,028 bodies</h3><div class="table-wrap"><table class="data"><tbody><tr><td>rapier.js (WASM)</td><td class="num">20.49 ms</td><td class="barcell"><span class="hbar alt" style="width:100%"></span></td></tr><tr><td>rapier.js SIMD</td><td class="num">9.86 ms</td><td class="barcell"><span class="hbar alt" style="width:48.12103465104929%"></span></td></tr><tr><td>Native Rust, 1 thread</td><td class="num">8.50 ms</td><td class="barcell"><span class="hbar alt" style="width:41.48365056124939%"></span></td></tr><tr><td>WASM threads, 6 threads</td><td class="num">3.22 ms</td><td class="barcell"><span class="hbar" style="width:15.714982918496831%"></span></td></tr></tbody></table></div>
+
+<h2>Frame spikes (p99)</h2>
+<p>Games stutter on spikes, not averages. 99th-percentile step time, browser worker:</p>
+<div class="table-wrap"><table class="data"><thead><tr><th>Scene</th><th class="num">SIMD (1 thread)</th><th class="num">Threads (6)</th></tr></thead><tbody>
+<tr><td>pyramid</td><td class="num">19.37</td><td class="num"><strong>2.21</strong></td></tr>
+<tr><td>pile</td><td class="num">33.80</td><td class="num"><strong>8.33</strong></td></tr>
+<tr><td>balls</td><td class="num">24.51</td><td class="num"><strong>11.64</strong></td></tr>
+<tr><td>chains</td><td class="num">5.21</td><td class="num"><strong>2.52</strong></td></tr>
+<tr><td>terrain</td><td class="num">19.25</td><td class="num"><strong>5.74</strong></td></tr>
+</tbody></table></div>
+
+<h2>Where the time goes (pile, 3,136 bodies)</h2>
+<div class="table-wrap"><table class="data"><thead><tr><th>Phase</th><th class="num">Native</th><th class="num">WASM</th><th class="num">WASM SIMD</th></tr></thead><tbody>
+<tr><td>Broad phase</td><td class="num">0.18</td><td class="num">0.28</td><td class="num">0.25</td></tr>
+<tr><td>Narrow phase</td><td class="num">3.15</td><td class="num">3.33</td><td class="num">3.44</td></tr>
+<tr><td><strong>Solver</strong></td><td class="num">13.01</td><td class="num">22.43</td><td class="num">10.13</td></tr>
+</tbody></table></div>
+<p>Collision detection is nearly free of WASM overhead; the solver is the cost. SIMD fixes the per-core gap (the solver works on 4 contacts at a time); threads fix the one-core limit.</p>
+
+<h2>Published npm package vs official, full API</h2>
+<div class="table-wrap"><table class="data"><thead><tr><th>Test scene</th><th class="num">Official SIMD</th><th class="num">Threads (6)</th><th class="num">Speedup</th></tr></thead><tbody>
+<tr><td>3D: 2,540 bodies, joints, sensor, events, JS hooks</td><td class="num">10.40</td><td class="num">4.70</td><td class="num ok">2.2×</td></tr>
+<tr><td>2D: 4,000 bodies</td><td class="num">7.20</td><td class="num">4.23</td><td class="num ok">1.7×</td></tr>
+</tbody></table></div>
+<p>Identical results on every check (positions, 24,802 collision events, 407 sensor events, 171,007 hook calls, raycasts, shape queries). See the <a href="index.html#is-it-the-same-physics">article</a>.</p>
+
+<h2>Threads: more isn't always better</h2>
+<div class="table-wrap"><table class="data"><thead><tr><th>Scene</th><th class="num">6 threads</th><th class="num">12 threads</th></tr></thead><tbody>
+<tr><td>pyramid</td><td class="num"><strong>1.44</strong></td><td class="num">2.22</td></tr>
+<tr><td>pile</td><td class="num"><strong>4.14</strong></td><td class="num">4.58</td></tr>
+<tr><td>chains</td><td class="num"><strong>1.40</strong></td><td class="num">1.90</td></tr>
+<tr><td>terrain</td><td class="num"><strong>3.22</strong></td><td class="num">3.78</td></tr>
+</tbody></table></div>
+<p>On 6 physical cores with hyper-threading, the extra threads mostly add synchronization cost. Match threads to physical cores; the package defaults to <code>hardwareConcurrency / 2</code>.</p>
+<div class="post-nav"><a class="btn" href="index.html">Article</a><a class="btn btn-go" href="stats.html" aria-current=page>Stats</a><a class="btn" href="demo.html">Live demo</a><a class="btn" href="https://github.com/jeevanandmaurya/rapier-wasm-threads" target="_blank" rel="noopener">GitHub</a><a class="btn" href="https://www.npmjs.com/package/@jeevanand/rapier3d-threads" target="_blank" rel="noopener">npm</a></div>
+</article>
+</main>
+<footer class="foot"><span>© 2026 Jeevanand Maurya</span><span><a href="https://github.com/jeevanandmaurya/" target="_blank" rel="noopener">GitHub</a> · <a href="https://www.linkedin.com/in/jeevanandmaurya/" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://www.x.com/jeevanandmaurya" target="_blank" rel="noopener">X</a></span></footer>
+<script src="../../main.js"></script>
+</body>
+</html>

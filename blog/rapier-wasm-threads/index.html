@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Multi-threaded Rapier physics in the browser · Jeevanand Maurya</title>
+<meta name="description" content="Rapier already has a parallel solver. The official JS builds just compile it out. Turning it on with WebAssembly threads gives 2–3.5× faster physics steps on large scenes, with identical results.">
+<meta property="og:title" content="Multi-threaded Rapier physics in the browser">
+<meta property="og:description" content="Rapier already has a parallel solver. The official JS builds just compile it out. Turning it on with WebAssembly threads gives 2–3.5× faster physics steps on large scenes, with identical results.">
+<meta property="og:url" content="https://jeevanandmaurya.github.io/blog/rapier-wasm-threads/index.html">
+<meta name="theme-color" content="#0D0E0B">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2317140E'/%3E%3Ctext x='16' y='24' font-family='Georgia,serif' font-size='24' text-anchor='middle' fill='%23E8C66D'%3E%CF%86%3C/text%3E%3C/svg%3E">
+<script>(function(){var t;try{t=localStorage.getItem('theme')}catch(e){}if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../style.css">
+<link rel="stylesheet" href="../../blog/blog.css">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="bar">
+  <a class="mark" href="../../index.html" aria-label="Jeevanand Maurya, home"><span class="phi">φ</span><span class="mark-name">Jeevanand</span></a>
+  <nav aria-label="Main"><a href="../../index.html">Home</a><a href="../../projects.html">Projects</a><a href="../../blog.html" aria-current=page>Blog</a><a href="../../about.html">About</a></nav>
+  <button id="theme" type="button" aria-label="Switch between light and dark"><svg class="i-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.800 9.800z"/></svg><svg class="i-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.500"/><path d="M12 2v2.500M12 19.500V22M2 12h2.500M19.500 12H22M4.900 4.900l1.800 1.800M17.300 17.300l1.800 1.800M4.900 19.100l1.800-1.800M17.300 6.700l1.800-1.800"/></svg></button>
+</header>
+<main id="content">
+<section class="page-head"><p class="eyebrow"><a href="../../blog.html">← Blog</a></p><h1>Multi-threaded Rapier physics in the browser</h1>
+<p class="lede">Rapier already has a parallel solver. The official JS builds just compile it out. Turning it on with WebAssembly threads gives 2–3.5× faster physics steps on large scenes, with identical results.</p><p class="meta">22 Nov 2026 · 8 min read</p></section>
+<article class="post">
+<div class="post-nav"><a class="btn btn-go" href="index.html" aria-current=page>Article</a><a class="btn" href="stats.html">Stats</a><a class="btn" href="demo.html">Live demo</a><a class="btn" href="https://github.com/jeevanandmaurya/rapier-wasm-threads" target="_blank" rel="noopener">GitHub</a><a class="btn" href="https://www.npmjs.com/package/@jeevanand/rapier3d-threads" target="_blank" rel="noopener">npm</a></div>
+<div class="kpis"><div class="kpi"><b>2–3.5×</b><span>faster world.step() on 2k–8k bodies</span></div><div class="kpi"><b>4×</b><span>lower p99 spikes (33.8 → 8.3 ms)</span></div><div class="kpi"><b>0</b><span>lines of physics code changed</span></div><div class="kpi"><b>100%</b><span>same results as the official build</span></div></div>
+
+<h2>The problem: one core, one frame budget</h2>
+<p>I was optimizing physics for browser games and built a benchmark harness: five scenes (box pyramids, a pile of 3,136 mixed shapes, 8,000 spheres, jointed chains, props on a triangle-mesh terrain), run identically in <a href="https://rapier.rs">Rapier</a> native (Rust) and in rapier.js (WebAssembly).</p>
+<p>The phase breakdown showed where the time goes. Collision detection costs about the same in WASM as natively. The gap is almost all in the <strong>constraint solver</strong>, and the official JS builds run it on <strong>a single thread</strong>, while a desktop CPU has 6 to 16 cores. At 60 FPS you get 16.7 ms per frame for everything. A 3,000-body pile took 15 ms of physics alone, and spikes went past 30 ms.</p>
+
+<h2>The surprise: the feature already exists</h2>
+<p>Rapier's Rust crate has a <code>parallel</code> feature. It runs broad phase, narrow phase, the constraint-graph colouring, the solver and integration on a <a href="https://github.com/rayon-rs/rayon">rayon</a> thread pool. Native apps use it. The official npm packages are simply compiled <em>without</em> it, because threads on the web come with conditions:</p>
+<ul>
+<li>WebAssembly memory must be a <code>SharedArrayBuffer</code>, which browsers only allow on <strong>cross-origin-isolated</strong> pages (the <code>COOP</code>/<code>COEP</code> headers).</li>
+<li>Rust's standard library has to be rebuilt with atomics (<code>-Z build-std</code>, nightly Rust).</li>
+<li>rayon needs threads, and on the web those are Web Workers. <a href="https://github.com/RReverser/wasm-bindgen-rayon">wasm-bindgen-rayon</a> turns a pool of workers into rayon's global pool, all sharing one WASM memory.</li>
+<li><code>world.step()</code> now <strong>blocks</strong> while it waits for its threads, and browsers forbid blocking the main thread, so physics has to run in a Worker.</li>
+</ul>
+<p>None of that touches the physics. So I didn't fork the engine; I changed how it's compiled.</p>
+
+<h2>How the build works</h2>
+<ol>
+<li>Check out the exact upstream commit an official npm release was built from (npm records it as <code>gitHead</code>).</li>
+<li>Run <strong>upstream's own build generator</strong> for its SIMD variant.</li>
+<li>Make three additive edits to the <em>generated</em> crate: enable <code>parallel</code> + <code>unsync-callbacks</code>, add <code>wasm-bindgen-rayon</code>, and export <code>initThreadPool</code>.</li>
+<li>Compile with <code>+atomics,+bulk-memory,+simd128</code>, shared memory, and <code>build-std</code>.</li>
+<li>Use upstream's TypeScript API unchanged, except <code>init()</code>, which also starts the thread pool.</li>
+</ol>
+<div class="callout"><strong>Why <code>unsync-callbacks</code>?</strong> JavaScript physics hooks and event handlers hold JS objects, which aren't thread-safe. Rapier's own <code>unsync-callbacks</code> mode hands worker threads a no-op hook and processes any collider pair with user hooks on the calling thread only. JS callbacks stay correct (tested: 171,007 hook calls, identical to the official build); only hooked pairs lose parallelism.</div>
+<p>Two traps I hit: upstream's release profile has <code>strip = true</code>, which deletes the section wasm-bindgen uses to detect threads (it would silently ship a non-threaded build); and Vite rewrites served JS in ways that break the blob-URL workers wasm-bindgen-rayon spawns. The package ships a small Vite plugin for that.</p>
+
+<h2 id="is-it-the-same-physics">Is it the same physics?</h2>
+<p>Yes. Every run compares the threads build against the official <code>@dimforge/rapier3d-simd-compat</code> of the same version, on a scene that uses the full API: 2,540 bodies, a 40-link joint chain, a sensor, collision events, JS contact-filter hooks, raycasts and shape queries.</p>
+<div class="table-wrap"><table class="data"><thead><tr><th>Check</th><th class="num">Official</th><th class="num">Threads</th></tr></thead><tbody>
+<tr><td>Average final height</td><td class="num">1.0662</td><td class="num">1.0662</td></tr>
+<tr><td>Collision start events</td><td class="num">24,802</td><td class="num">24,802</td></tr>
+<tr><td>Sensor events</td><td class="num">407</td><td class="num">407</td></tr>
+<tr><td>JS physics-hook calls</td><td class="num">171,007</td><td class="num">171,007</td></tr>
+<tr><td>Raycast time of impact</td><td class="num">25.053</td><td class="num">25.053</td></tr>
+<tr><td>Shape-intersection hits</td><td class="num">98</td><td class="num">98</td></tr>
+</tbody></table></div>
+<p>Full numbers, phase breakdowns and native comparisons are on the <a href="stats.html">stats page</a>. Or <a href="demo.html">run it yourself</a>.</p>
+
+<h2>Staying in sync with upstream automatically</h2>
+<p>Because nothing upstream is patched, new releases don't conflict. A daily GitHub Action checks npm; when Dimforge publishes a release, it pins the exact commit, builds, runs the browser test suite against the official package of the same version, and publishes with npm provenance. Every assumption about upstream's layout is asserted, so if upstream changes something the build depends on, it stops with a clear message and opens an issue instead of shipping a broken package.</p>
+
+<h2>Using it</h2>
+<pre><code>npm i @jeevanand/rapier3d-threads</code></pre>
+<pre><code>// physics.worker.js
+import RAPIER from "@jeevanand/rapier3d-threads";
+await RAPIER.init({ threads: 4 }); // default: hardwareConcurrency / 2
+const world = new RAPIER.World({ x: 0, y: -9.81, z: 0 });
+// … the usual Rapier API …
+world.step();</code></pre>
+<p>Serve the page with <code>Cross-Origin-Opener-Policy: same-origin</code> and <code>Cross-Origin-Embedder-Policy: require-corp</code> (on static hosts like GitHub Pages, the community <a href="https://github.com/gzuidhof/coi-serviceworker">coi-serviceworker</a> adds them; this blog's demo uses it). Fall back to the official package when <code>crossOriginIsolated</code> is false: the API is identical.</p>
+
+<h2>When it's worth it</h2>
+<ul>
+<li><strong>Yes:</strong> thousands of active bodies, big piles and stacks, destruction, crowds, open worlds where one world doesn't fit the frame budget.</li>
+<li><strong>Less so:</strong> small scenes (a 1,200-body chain only went 2.7 → 1.4 ms), pages that can't be cross-origin isolated (some ads/embeds/portals), or apps that must call <code>step()</code> on the main thread.</li>
+<li>Thread count matters: on a 6-core/12-thread laptop, 6 threads beat 12. The default is half of <code>hardwareConcurrency</code>.</li>
+</ul>
+<p class="muted">Unofficial build, not affiliated with Dimforge. Rapier is Apache-2.0; all credit for the engine and its parallel solver goes to its authors.</p>
+<div class="post-nav"><a class="btn btn-go" href="index.html" aria-current=page>Article</a><a class="btn" href="stats.html">Stats</a><a class="btn" href="demo.html">Live demo</a><a class="btn" href="https://github.com/jeevanandmaurya/rapier-wasm-threads" target="_blank" rel="noopener">GitHub</a><a class="btn" href="https://www.npmjs.com/package/@jeevanand/rapier3d-threads" target="_blank" rel="noopener">npm</a></div>
+</article>
+</main>
+<footer class="foot"><span>© 2026 Jeevanand Maurya</span><span><a href="https://github.com/jeevanandmaurya/" target="_blank" rel="noopener">GitHub</a> · <a href="https://www.linkedin.com/in/jeevanandmaurya/" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://www.x.com/jeevanandmaurya" target="_blank" rel="noopener">X</a></span></footer>
+<script src="../../main.js"></script>
+</body>
+</html>

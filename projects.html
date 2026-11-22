@@ -20,17 +20,25 @@
 <a class="skip" href="#content">Skip to content</a>
 <header class="bar">
   <a class="mark" href="index.html" aria-label="Jeevanand Maurya, home"><span class="phi">φ</span><span class="mark-name">Jeevanand</span></a>
-  <nav aria-label="Main"><a href="index.html">Home</a><a href="projects.html" aria-current=page>Projects</a><a href="about.html">About</a></nav>
+  <nav aria-label="Main"><a href="index.html">Home</a><a href="projects.html" aria-current=page>Projects</a><a href="blog.html">Blog</a><a href="about.html">About</a></nav>
   <button id="theme" type="button" aria-label="Switch between light and dark"><svg class="i-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.800 9.800z"/></svg><svg class="i-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.500"/><path d="M12 2v2.500M12 19.500V22M2 12h2.500M19.500 12H22M4.900 4.900l1.800 1.800M17.300 17.300l1.800 1.800M4.900 19.100l1.800-1.800M17.300 6.700l1.800-1.800"/></svg></button>
 </header>
 <main id="content">
 <section class="page-head">
   <h1>Projects</h1>
-  <p class="lede"><span id="count">13</span> things I've built, from games and AI agents to small web tools.</p>
+  <p class="lede"><span id="count">14</span> things I've built, from games and AI agents to small web tools.</p>
   <div class="filters" role="group" aria-label="Filter projects"><button type="button" data-f="all" aria-pressed=true>All</button><button type="button" data-f="ai" aria-pressed=false>AI</button><button type="button" data-f="threed" aria-pressed=false>3D</button><button type="button" data-f="games" aria-pressed=false>Games</button><button type="button" data-f="web" aria-pressed=false>Web apps</button><button type="button" data-f="small" aria-pressed=false>Small builds</button></div>
 </section>
 <section class="rows">
-<div class="row" data-c="games threed"><article class="work work-row">
+<div class="row" data-c="threed web"><article class="work work-row">
+  <a class="shot" href="blog/rapier-wasm-threads/index.html" tabindex="-1" aria-hidden="true"><img src="Projects/Assets/shots/rapier-threads.png" alt="A glass bin filled with 3,136 colourful boxes, balls, capsules and cylinders, simulated by Rapier" width="732" height="431" sizes="(max-width:760px) 100vw, 300px" decoding="async"></a>
+  <div class="work-text">
+    <p class="tech">Featured · Rust · WebAssembly threads · Rapier · Three.js</p>
+    <h3><a href="blog/rapier-wasm-threads/index.html">Rapier WASM Threads: multi-threaded physics in the browser</a></h3>
+    <p>Rapier's parallel solver, compiled for the web with WebAssembly threads: 2–3.5× faster physics steps on scenes with thousands of bodies, with the same results as the official build. Published on npm and kept in sync with upstream by a daily GitHub Action.</p>
+    <div class="links"><a class="btn btn-go" href="blog/rapier-wasm-threads/index.html">Read<span class="visually-hidden">: Rapier WASM Threads</span></a><a class="btn" href="blog/rapier-wasm-threads/demo.html">Live demo</a><a class="btn" href="blog/rapier-wasm-threads/stats.html">Stats</a><a class="btn" href="https://github.com/jeevanandmaurya/rapier-wasm-threads" target="_blank" rel="noopener">GitHub<span class="visually-hidden">: Rapier WASM Threads</span></a><a class="btn" href="https://www.npmjs.com/package/@jeevanand/rapier3d-threads" target="_blank" rel="noopener">npm</a></div>
+  </div>
+</article></div><div class="row" data-c="games threed"><article class="work work-row">
   <a class="shot" href="https://jeevanandmaurya.github.io/vanaj-forest-born/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="Projects/Assets/shots/vanaj.webp" alt="A boy with a spear stands in a painted green forest, with a deer, a gaur, a wolf and a dhole behind him" width="960" height="600" sizes="(max-width:760px) 100vw, 300px" decoding="async"></a>
   <div class="work-text">
     <h3><a href="https://jeevanandmaurya.github.io/vanaj-forest-born/" target="_blank" rel="noopener">VANAJ: Forest-Born</a></h3>
